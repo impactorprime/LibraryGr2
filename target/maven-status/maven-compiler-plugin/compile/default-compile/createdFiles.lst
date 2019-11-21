@@ -1,0 +1,9 @@
+com\library\librarygr2\servlets\WelcomeServlet.class
+com\library\librarygr2\beans\User.class
+com\library\librarygr2\beans\Role.class
+com\library\librarygr2\servlets\AdminLoginServlet.class
+com\library\librarygr2\servlets\LoginServlet.class
+com\library\librarygr2\servlets\DashboardServlet.class
+com\library\librarygr2\beans\Book.class
+com\library\librarygr2\helpers\SimpleLibraryContextListener.class
+com\library\librarygr2\servlets\UserLoginServlet.class
