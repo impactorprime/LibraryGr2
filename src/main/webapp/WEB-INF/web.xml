@@ -5,16 +5,8 @@
 	 xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
 	 version="3.1">
     <welcome-file-list>
-        <welcome-file>Welcome</welcome-file>
+        <welcome-file>welcome</welcome-file>
     </welcome-file-list>
-    <servlet>
-        <servlet-name>WelcomeServlet</servlet-name>
-        <servlet-class>com.library.librarygr2.servlets.WelcomeServlet</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>WelcomeServlet</servlet-name>
-        <url-pattern>/Welcome</url-pattern>
-    </servlet-mapping>
     <session-config>
         <session-timeout>
             30

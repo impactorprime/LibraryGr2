@@ -21,10 +21,6 @@ public class SimpleLibraryContextListener implements ServletContextListener {
         System.out.println("SimpleLibraryContextListener");
         
         List<Book> books = new ArrayList<>();
-        books.add(new Book("Adam Mickiewicz", "Pan Tadeusz"));
-        books.add(new Book("Henryk Sienkiewicz", "Krzyżacy"));
-        books.add(new Book("Juliusz Słowacki", "Balladyna"));
-        
         sce.getServletContext().setAttribute("books", books);
     }
 

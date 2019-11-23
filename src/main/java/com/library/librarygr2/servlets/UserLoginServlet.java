@@ -68,11 +68,6 @@ public class UserLoginServlet extends HttpServlet {
         users.put("123", "123");
     }
     
-//    private void addUser(String username, String password){
-//        users.put(username, password);
-//        System.out.println("Dodano użytkownika: "+username+" do hashmapy");
-//    }
-    
     private boolean checkUser(String username, String password){
         if(users.containsKey(username)){
             return (password.equals(users.get(username)));
@@ -86,6 +81,7 @@ public class UserLoginServlet extends HttpServlet {
     
     private void saveUserToContext(User user, ServletContext context) {
         context.setAttribute("loggedUser", user);
+        System.out.println("Dodano do kontekstu");
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

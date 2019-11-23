@@ -5,11 +5,10 @@
  */
 package com.library.librarygr2.servlets;
 
-import com.library.librarygr2.beans.Role;
-import com.library.librarygr2.beans.User;
+import com.library.librarygr2.beans.Book;
 import java.io.IOException;
 import java.io.PrintWriter;
-import javax.servlet.ServletContext;
+import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -17,36 +16,30 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 
-@WebServlet(name = "AdminLoginServlet", urlPatterns = {"/admin-login"})
-public class AdminLoginServlet extends HttpServlet {
-
+@WebServlet(name = "AddBooks", urlPatterns = {"/AddBooks"})
+public class AddBooks extends HttpServlet {
     
+    String author;
+    String title;
+
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
-        String login = request.getParameter("username");
-        String password = request.getParameter("password");
+        List<Book> books = (List<Book>) request.getServletContext().getAttribute("books");
+        author = request.getParameter("author");
+        title = request.getParameter("title");
         
-        if(checkIfCorrectPassword(password)) {
-            User user = createUser(login, password);
-            saveUserToContext(user, request.getServletContext());
-            request.getRequestDispatcher("/AdminServlet").forward(request, response);
-        } else {
-            request.getRequestDispatcher("/login-failed.html").forward(request, response);
-        }
+        addBook(books, author, title);
+        
+        request.getRequestDispatcher("/AdminServlet").forward(request, response);
     }
+    
+    private void addBook(List books, String author, String title){
+        books.add(new Book(author, title));
+    }
+    
+    
 
-    private boolean checkIfCorrectPassword(String password) {
-        return "admin".equals(password);
-    }
-    
-    private User createUser(String username, String password) {
-        return new User(username, password, Role.ADMIN);
-    }
-    
-    private void saveUserToContext(User user, ServletContext context) {
-        context.setAttribute("loggedUser", user);
-    }
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.

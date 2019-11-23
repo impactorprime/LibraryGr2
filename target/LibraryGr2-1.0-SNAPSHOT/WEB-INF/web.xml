@@ -7,14 +7,6 @@
     <welcome-file-list>
         <welcome-file>welcome</welcome-file>
     </welcome-file-list>
-    <servlet>
-        <servlet-name>WelcomeServlet</servlet-name>
-        <servlet-class>com.library.librarygr2.servlets.WelcomeServlet</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>WelcomeServlet</servlet-name>
-        <url-pattern>/welcome</url-pattern>
-    </servlet-mapping>
     <session-config>
         <session-timeout>
             30

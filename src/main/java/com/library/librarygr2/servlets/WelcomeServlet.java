@@ -1,6 +1,8 @@
 package com.library.librarygr2.servlets;
 
+import com.library.librarygr2.beans.User;
 import java.io.IOException;
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -8,7 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 
-@WebServlet(name = "WelcomeServlet", urlPatterns = {"/Welcome"})
+@WebServlet(name = "WelcomeServlet", urlPatterns = {"/welcome"})
 public class WelcomeServlet extends HttpServlet {
 
     
@@ -16,7 +18,14 @@ public class WelcomeServlet extends HttpServlet {
             throws ServletException, IOException {
         System.out.println("In WelcomeServlet\n\n\n\n\n");
         
-        request.getRequestDispatcher("login.html").forward(request, response);
+        ServletContext context = request.getServletContext();
+        
+        if(context.getAttribute("loggedUser") == null){
+            request.getRequestDispatcher("/login.html").forward(request, response);
+        }
+        else{
+            request.getRequestDispatcher("/dashboard").forward(request, response);
+        }
 
         
         System.out.println("Out WelcomeServlet");
