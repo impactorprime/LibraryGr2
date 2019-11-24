@@ -15,6 +15,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 
 @WebServlet(name = "AdminLoginServlet", urlPatterns = {"/admin-login"})
@@ -29,7 +30,8 @@ public class AdminLoginServlet extends HttpServlet {
         
         if(checkIfCorrectPassword(password)) {
             User user = createUser(login, password);
-            saveUserToContext(user, request.getServletContext());
+            saveAdminToContext(user, request.getServletContext());
+            saveAdminToSession(user, request.getSession());
             request.getRequestDispatcher("/AdminServlet").forward(request, response);
         } else {
             request.getRequestDispatcher("/login-failed.html").forward(request, response);
@@ -44,8 +46,14 @@ public class AdminLoginServlet extends HttpServlet {
         return new User(username, password, Role.ADMIN);
     }
     
-    private void saveUserToContext(User user, ServletContext context) {
-        context.setAttribute("loggedUser", user);
+    private void saveAdminToContext(User user, ServletContext context) {
+        context.setAttribute("loggedAdmin", user);
+        System.out.println("Dodano do admina kontekstu");
+    }
+    
+    private void saveAdminToSession(User user, HttpSession session) {
+        session.setAttribute("loggedAdmin", user);
+        System.out.println("Dodano do admina sesji");
     }
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**

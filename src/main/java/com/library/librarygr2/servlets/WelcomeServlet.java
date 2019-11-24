@@ -20,7 +20,7 @@ public class WelcomeServlet extends HttpServlet {
         
         ServletContext context = request.getServletContext();
         
-        if(context.getAttribute("loggedUser") == null){
+        if(context.getAttribute("loggedUser") == null && context.getAttribute("loggedAdmin") == null){
             request.getRequestDispatcher("/login.html").forward(request, response);
         }
         else{
